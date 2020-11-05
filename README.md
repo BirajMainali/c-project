@@ -9,9 +9,10 @@
 
 **Git clone https://github.com/BirajMainali/CRM.git**
 
+
 **Open with Your C Compiler i.e Turbo C/C++, code block recomanded Code Block "http://www.codeblocks.org/downloads"**
 
-</Project Images>
+**</Project Images>**
 
 **Login**
 ![image](https://user-images.githubusercontent.com/71131016/98201768-8a220300-1f58-11eb-8b28-6525534d7313.png)
