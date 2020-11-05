@@ -1,4 +1,4 @@
--Download Git 'https://git-scm.com/downloads'                                    
+**Download Git 'https://git-scm.com/downloads'**                            
 
 -Choose Your Project directory i.e
 
