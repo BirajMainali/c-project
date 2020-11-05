@@ -7,7 +7,7 @@
 
 **AfterChoosing Your Project directory**
 
-**Git clone https://github.com/BirajMainali/CRM.git**
+**Git clone https://github.com/BirajMainali/C-CRUD.git**
 
 
 **Open with Your C Compiler i.e Turbo C/C++, code block recomanded Code Block "http://www.codeblocks.org/downloads"**
