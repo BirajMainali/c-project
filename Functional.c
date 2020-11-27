@@ -1,437 +1,295 @@
 #include<stdio.h>
-
 #include<conio.h>
-
+#include<stdlib.h>
 #include<string.h>
-
-#include<windows.h>
-
-#include<time.h>
-
-#define size 200
+#include<dos.h>
+/** define the structure **/
+typedef struct {
+    char fullName[50];
+    int age;
+    float salary;
+} Employee;
+/** function declaration: prototypes ***/
+void addEmployee();
+void displayAllEmployeeList();
+void searchEmployeeByName();
+void editEmployeeByName();
+void deleteEmployeeByName();
+FILE* openFile();
+/**************************************/
 int main()
 {
-    system ( "color 0a" );
-    int Login;
-    time_t t;
-    time ( & t );
-    printf ( "Login Date: %s", ctime ( & t ) );
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t*PASSWORD PROTECTED PERSONAL Login*\n" );
-    printf ( "\t\t\t\t\t***********************************" );
-    printf ( "\n\n\t\t\t\t\t\tSYSTEM LOGIN\n\n\t\t\t\t\t\tCreate User[1]\n\n\t\t\t\t\t\tLogin User[2]\n\n>> " );
-    scanf ( "%d", & Login );
+    /** Declare necessary variables ************/
+    int option;
+    /*******Show the Menu *****************/
+MENU:
+    system ( "cls" );
+    printf ( "\n1. Add Employee Record\n" );
+    printf ( "\n2. View Employee Record\n" );
+    printf ( "\n3. Edit Employee Record\n" );
+    printf ( "\n4. Search Employee Record\n" );
+    printf ( "\n5. Delete Employee Record\n" );
+    printf ( "\n6. Exit\n" );
+    printf ( "\nEnter your choice: \t" );
+    /*******Read the option********************/
+    scanf ( "%d", &option );
     
-    switch ( Login ) {
+    switch ( option ) {
     case 1:
-        Adduser();
+        addEmployee();
         break;
         
     case 2:
-        Userlogin();
-        break;
-        
-    default:
-        printf ( "Please Choose proper Option,Press key to try Again" );
-        break;
-    }
-    
-    return 0;
-}
-int Adduser()
-
-{
-    system ( "cls" );
-    system ( "color 0a" );
-    char User[50];
-    char password[20];
-    int i;
-    int pool;
-    time_t t;
-    time ( & t );
-    printf ( "Login Date: %s", ctime ( & t ) );
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t\t*Let's create New User*\n" );
-    printf ( "\t\t\t\t\t***********************************\n\n" );
-    printf ( "\tEnter Username: " );
-    scanf ( "%s", & User );
-    
-    if ( User ) {
-        printf ( "\tEnter New Password: " );
-        int p = 0;
-        
-        do {
-            password[p] = getch();
-            
-            if ( password[p] != '\r' )
-                printf ( "*" );
-                
-            p++;
-        }
-        while ( password[p - 1] != '\r' );
-        
-        password[p - 1] = '\0';
-        getch();
-        system ( "cls" );
-        system ( "cls" );
-        printf ( "\tconfirmation Password" );
-        printf ( ".." );
-        Sleep ( 500 );
-        printf ( "..." );
-        Sleep ( 200 );
-        printf ( ".." );
-        Sleep ( 200 );
-        system ( "Cls" );
-        printf ( "\n" );
-        printf ( "\t Congratulation %s User Created Successfully!!" );
-        Sleep ( 1000 );
-        system ( "cls" );
-        printf ( "\n\n\t\t\t\t\t***********************************\n" );
-        printf ( "\t\t\t\t\t\t*Please Select Option*\n" );
-        printf ( "\t\t\t\t\t***********************************\n\n" );
-        printf ( "\n\n\t\t\tMAIN MENU:" );
-        printf ( "\n\n\tADD RECORD\t[1]" );
-        printf ( "\n\tEDIT RECORD\t[2]" );
-        printf ( "\n\tDELET RECORD\t[3]" );
-        printf ( "\n\tAMC CALCULATOR\t[4]" );
-        printf ( "\n\tSYSTEM LOGOUT\t[5]" );
-        printf ( "\n\n\tENTER YOUR CHOICE:" );
-        scanf ( "%d", & pool );
-        
-        switch ( pool ) {
-        case 1:
-            Addrecord();
-            break;
-            
-        case 2:
-            ReadRecord();
-            break;
-            
-        case 3:
-            DeleteRecord();
-            break;
-            
-        case 4:
-            AmcCalulator();
-            break;
-            
-        case 5:
-            systemlogout();
-            break;
-            
-        default:
-            printf ( "please try Once" );
-            break;
-        }
-    }
-};
-int Userlogin()
-
-{
-    system ( "cls" );
-    system ( "Color 0a" );
-    char key[20] = ( "****" );
-    char User[20];
-    char password[50];
-    int pool;
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t*PASSWORD PROTECTED PERSONAL Login*\n" );
-    printf ( "\t\t\t\t\t***********************************\n\n" );
-    printf ( "\tEnter UserName: " );
-    scanf ( "%s", & User );
-    
-    if ( User )
-        ; {
-        
-        if ( key ) {
-            printf ( "\tEnter Password: " );
-            int p = 0;
-            
-            do {
-                password[p] = getch();
-                
-                if ( password[p] != '\r' )
-                    printf ( "*" );
-                    
-                p++;
-            }
-            while ( password[p - 1] != '\r' );
-            
-            password[p - 1] = '\0';
-            system ( "cls" );
-            printf ( "\n" );
-            printf ( "verifying your account" );
-            Sleep ( 100 );
-            printf ( "." );
-            Sleep ( 100 );
-            printf ( ".." );
-            Sleep ( 500 );
-            printf ( "...\n" );
-            Sleep ( 100 );
-            system ( "cls" );
-            printf ( "Login Success\n\n" );
-            Sleep ( 500 );
-            system ( "Cls" );
-            printf ( "Login User %s", & User );
-            Sleep ( 500 );
-            system ( "cls" );
-            printf ( "\n\n\t\t\t\t\t***********************************\n" );
-            printf ( "\t\t\t\t\t\t*Please Select Option*\n" );
-            printf ( "\t\t\t\t\t***********************************\n\n" );
-            printf ( "\n\n\t\tMAIN MENU:" );
-            printf ( "\n\n\tADD RECORD\t[1]" );
-            printf ( "\n\tEDIT RECORD\t[2]" );
-            printf ( "\n\tDELET RECORD\t[3]" );
-            printf ( "\n\tAMC CALCULATOR\t[4]" );
-            printf ( "\n\tSYSTEM LOGOUT\t[5]" );
-            printf ( "\n\n\tENTER YOUR CHOICE:" );
-            scanf ( "%d", & pool );
-            
-            switch ( pool ) {
-            case 1:
-                Addrecord();
-                break;
-                
-            case 2:
-                ReadRecord();
-                break;
-                
-            case 3:
-                DeleteRecord();
-                break;
-                
-            case 4:
-                AmcCalulator();
-                break;
-                
-            case 5:
-                systemlogout();
-                break;
-                
-            default:
-                printf ( "please try Once" );
-                break;
-            }
-        }
-    }
-};
-
-int Addrecord()
-{
-    system ( "cls" );
-    char Name[200];
-    int Number;
-    char Address[100];
-    FILE * fptr;
-    printf ( "\n\n\t\t\t\t*****************************\n" );
-    printf ( "\t\t\t\t::*Add Client Information*::\n" );
-    printf ( "\t\t\t\t*****************************\n\n" );
-    fptr = fopen ( "E:\\Biraj.txt", "w" );
-    
-    if ( fptr == NULL ) {
-        printf ( "Please Enter Proper Data" );
-        exit ( 1 );
-    }
-    
-    printf ( "\tEnter Name: " );
-    scanf ( "%s", & Name );
-    fprintf ( fptr, "%s", Name );
-    fclose ( fptr );
-    printf ( "\n\tEnter Contact: " );
-    scanf ( "%d", & Number );
-    fprintf ( fptr, "%d", Number );
-    fclose ( fptr );
-    printf ( "\n\tClient Address: " );
-    scanf ( "%s", & Address );
-    fprintf ( fptr, "%s", Address );
-    fclose ( fptr );
-    Sleep ( 100 );
-    system ( "cls" );
-    printf ( "\tSaving Infprmation." );
-    Sleep ( 200 );
-    printf ( ".." );
-    Sleep ( 200 );
-    printf ( ".." );
-    Sleep ( 2000 );
-    printf ( "..\n" );
-    system ( "cls" );
-    int Redirect;
-    printf ( "\n\tPress Any key For Main Menu\n>>" );
-    scanf ( "%d", & Redirect );
-    
-    if ( Redirect )
-        Recall();
-        
-    getch();
-};
-int ReadRecord()
-{
-    int Redirect;
-    system ( "color 0a" );
-    system ( "cls" );
-    char Name[200];
-    int Number;
-    char Address[100];
-    FILE * fptr;
-    printf ( "\n\n\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t::*Client Document*::\n" );
-    printf ( "\t\t\t\t***********************************\n\n" );
-    
-    if ( ( fptr = fopen ( "E:\\CrmData.txt", "r" ) ) == NULL )
-        printf ( "\nError! opening file" );
-        
-    fscanf ( fptr, "%s", & Name );
-    printf ( "\tClient Name:%s", Name );
-    fclose ( fptr );
-    fscanf ( fptr, "%d", & Number );
-    printf ( "\n\tClient Contact: %d", Name );
-    fclose ( fptr );
-    fscanf ( fptr, "%s", & Name );
-    printf ( "\n\tClient Address: %s", Name );
-    fclose ( fptr );
-    getch();
-    printf ( "\nPress Any key For Main Menu\n>>" );
-    scanf ( "%d", & Redirect );
-    
-    if ( Redirect )
-        Recall();
-}
-int DeleteRecord()
-
-{
-    system ( "cls" );
-    system ( "Color 0a" );
-    char key[20];
-    char User[20];
-    char password[50];
-    time_t t;
-    time ( & t );
-    printf ( "Login Date: %s", ctime ( & t ) );
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t*Enter Client Name for Update Record's*\n" );
-    printf ( "\t\t\t\t\t***********************************\n\n" );
-    printf ( "\tPlease Login After Deleting Record\n\n" );
-    printf ( "\tEnter UserName: " );
-    scanf ( "%s", & User );
-    
-    if ( User )
-        ; {
-        
-        if ( key ) {
-            printf ( "\tEnter Password: " );
-            int p = 0;
-            
-            do {
-                password[p] = getch();
-                
-                if ( password[p] != '\r' )
-                    printf ( "*" );
-                    
-                p++;
-            }
-            while ( password[p - 1] != '\r' );
-            
-            password[p - 1] = '\0';
-            system ( "cls" );
-            printf ( "\n" );
-            printf ( "Checking User Data: " );
-            Sleep ( 100 );
-            printf ( "." );
-            Sleep ( 100 );
-            printf ( ".." );
-            Sleep ( 500 );
-            printf ( "...\n" );
-            Sleep ( 100 );
-            system ( "cls" );
-            printf ( " %s User Data Found in System \n\n" );
-            Sleep ( 1000 );
-            system ( "Cls" );
-            printf ( "System logging out Due to Security Reason." );
-            Sleep ( 500 );
-            printf ( ".." );
-            Sleep ( 500 );
-            system ( "exit" );
-        }
-    }
-};
-void AmcCalulator()
-{
-    system ( "cls" );
-    int Redirect;
-    float value1, value2, P, T, R, Vat, Net, result;
-    system ( "cls" );
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t\t*Amc Record*\n" );
-    printf ( "\t\t\t\t\t***********************************\n\n" );
-    printf ( "\n\n\t\t\tCalculate Amc:" );
-    printf ( "\n\nSales Amount: " );
-    scanf ( "%f", & P );
-    printf ( "Time: " );
-    scanf ( "%f", & T );
-    printf ( "Rate: " );
-    scanf ( "%f", & R );
-    result = ( P * T * R / 365 );
-    printf ( "\nAmc:%f", result );
-    printf ( "Press Any key to logout:\n>" );
-    scanf ( "%d", Redirect );
-    
-    if ( Redirect )
-        Recall();
-};
-void systemlogout()
-{
-    char A;
-    time_t t;
-    time ( & t );
-    printf ( "Login Date: %s", ctime ( & t ) );
-    printf ( "For Logout Press[Y]\n\n>>" );
-    scanf ( "%c", & A );
-    
-    if ( A == 'Y' )
-        system ( "exit" );
-        
-    else
-        Recall();
-};
-int Recall()
-{
-    int pool;
-    system ( "cls" );
-    printf ( "\n\n\t\t\t\t\t***********************************\n" );
-    printf ( "\t\t\t\t\t\t*Please Select Option*\n" );
-    printf ( "\t\t\t\t\t***********************************\n\n" );
-    printf ( "\n\n\t\t\tMAIN MENU:" );
-    printf ( "\n\n\tADD RECORD\t[1]" );
-    printf ( "\n\tEDIT RECORD\t[2]" );
-    printf ( "\n\tDELET RECORD\t[3]" );
-    printf ( "\n\tAMC CALCULATOR\t[4]" );
-    printf ( "\n\tSYSTEM LOGOUT\t[5]" );
-    printf ( "\n\n\tENTER YOUR CHOICE:" );
-    scanf ( "%d", & pool );
-    
-    switch ( pool ) {
-    case 1:
-        Addrecord();
-        break;
-        
-    case 2:
-        ReadRecord();
+        displayAllEmployeeList();
         break;
         
     case 3:
-        DeleteRecord();
+        editEmployeeByName();
         break;
         
     case 4:
-        AmcCalulator();
+        searchEmployeeByName();
         break;
         
     case 5:
-        systemlogout();
+        deleteEmployeeByName();
+        break;
+        
+    case 6:
+        exit ( -1 );
         break;
         
     default:
-        printf ( "please try Once" );
+        printf ( "\nWrong choice" );
         break;
     }
-};
+    
+    getch();
+    goto MENU;
+    getch();
+    return 0;
+}
+/**** function definitions **************/
+FILE* openFile()  ///returning a pointer from a function
+{
+    FILE *fptr;
+    /**
+        see if the file is already present or not
+        ->if it is already present open it in
+        "r+b": read and write within the file
+        ->Do not use "a+b" mode because you won't be able to modify earlier records
+        ->Otherwise, open the file in
+        "w+b": a new file is created if not found
+        for reading and writing by removing all the previous contents in it.
+    **/
+    fptr = fopen ( "emp.bin", "r+b" );
+    
+    if ( fptr == NULL ) {
+        printf ( "\n File not found .....trying to create one" );
+        fptr = fopen ( "emp.bin", "w+b" );
+        
+        if ( fptr == NULL ) {
+            printf ( "\n File not found .....trying to create one failed too..." );
+            return NULL;
+        }
+        
+        else {
+            //printf("\n File  not found .....trying to create a new one passed...");
+            return fptr;
+        }
+    }
+    
+    else {
+//printf("\n File  found .....did not try to create a new one");
+        return fptr;
+    }
+}///open file ends
+void addEmployee()
+{
+    system ( "cls" ); ///to clear the screen
+    Employee e;
+    FILE *fptr = openFile();///call the function to open the file
+    
+    if ( fptr == NULL )
+        exit ( -1 );
+        
+///read the details of an employee
+    printf ( "\n Enter the name: " );
+    fflush ( stdin );
+    gets ( e.fullName );
+    printf ( "\nEnter the age: " );
+    scanf ( "%d", &e.age );
+    printf ( "\nEnter the salary: " );
+    scanf ( "%f", &e.salary );
+///take the file pointer after the last record i.e to the end of the file
+///or else you will end up over writing the earlier records.
+    fseek ( fptr, 0, 2 );
+    
+/// Write the content to the disk
+    if ( fwrite ( &e, sizeof ( e ), 1, fptr ) == 1 )
+        printf ( "\nWriting to disk...Done..Press any key to continue.." );
+        
+    fclose ( fptr );
+}
+/**** to display all the details of each employee *****/
+void displayAllEmployeeList()
+{
+///clear the screen
+    system ( "cls" );
+    Employee e;
+    int hasRecord = 0;
+///open the file
+    FILE *fptr = openFile();
+    
+    if ( fptr == NULL )
+        exit ( -1 );
+        
+    printf ( "\nName\t\tAge\tSalary" );
+    printf ( "\n***********************************************\n" );
+    
+    while ( fread ( &e, sizeof ( e ), 1, fptr ) == 1 ) {
+        hasRecord = 1;
+        printf ( "%s\t%d\t%.3f\n", e.fullName, e.age, e.salary );
+        printf ( "_____________________________________________\n" );
+    }
+    
+    if ( hasRecord == 0 )
+        printf ( "\nThere are no records..Press any key to continue." );
+        
+///close the file
+    fclose ( fptr );
+}///function ends
+/** function to edit the employee salary details ***/
+void editEmployeeByName()
+{
+///clear the screen
+    system ( "cls" );
+    Employee e;
+    char searchName[50];
+    int recordNo = 0, isFound = 0;
+    FILE *fptr = openFile();
+    
+    if ( fptr == NULL ) {
+        printf ( "\nSorry, the modification failed..." );
+        exit ( -1 );
+    }
+    
+    printf ( "\nEnter the name of the employee:\t" );
+    fflush ( stdin );
+    gets ( searchName );
+    
+    while ( fread ( &e, sizeof ( e ), 1, fptr ) == 1 ) {
+        ///case sensitive search
+        if ( strcmp ( searchName, e.fullName ) == 0 ) {
+            isFound = 1;
+///the same logic can be used to change the age and full name as well
+            printf ( "\nEnter the new salary: " );
+            scanf ( "%f", &e.salary );
+///take the file pointer to the record that needs to be modified
+            fseek ( fptr, sizeof ( e ) *recordNo, 0 );
+            
+            if ( fwrite ( &e, sizeof ( e ), 1, fptr ) == 1 ) {
+                ///take file pointer to the next record
+                fseek ( fptr, sizeof ( e ) * ( recordNo + 1 ), 0 );
+            }
+        }
+        
+        recordNo++;
+    }
+    
+    if ( isFound == 1 )
+        printf ( "\nData modified successfully..Press any key to continue" );
+        
+    else
+        printf ( "\nNo match found..Press any key to continue" );
+        
+    fclose ( fptr );
+}///function ends
+void deleteEmployeeByName()
+{
+///clear the screen
+    system ( "cls" );
+    Employee e;
+    FILE *fptr, *fptr2;
+    int isDeleted = 0;
+    char searchName[50];
+    fptr = openFile();
+    fptr2 = fopen ( "tmp.bin", "w+b" );
+    
+    if ( fptr2 == NULL || fptr == NULL ) {
+        printf ( "\n Sorry file could not be opened..." );
+        exit ( -1 );
+    }
+    
+    printf ( "\nEnter the name of the employee:\t" );
+    fflush ( stdin );
+    gets ( searchName );
+    
+    while ( fread ( &e, sizeof ( e ), 1, fptr ) == 1 ) {
+        ///case insensitive search
+        if ( strcasecmp ( e.fullName, searchName ) != 0 ) {
+            fwrite ( &e, sizeof ( e ), 1, fptr2 );
+            printf ( "\nWriting....to temporary file...done!!!" );
+        }
+    }
+    
+///close the files
+    if ( fclose ( fptr ) == 0 )
+        printf ( "\nOriginal file closed..." );
+        
+    if ( fclose ( fptr2 ) == 0 )
+        printf ( "\nTemporary file closed..." );
+        
+///remove the original file
+    if ( remove ( "emp.bin" ) == 0 ) {
+        ///success
+        printf ( "\nOriginal file removed..." );
+    }
+    
+    else
+        printf ( "\nOriginal file could not be removed..." );
+        
+///rename the tmp file
+    if ( rename ( "tmp.bin", "emp.bin" ) == 0 ) {
+        ///success
+        printf ( "\nTemporary file renamed...Press any key to continue" );
+    }
+    
+    else
+        printf ( "\nTemporary file could not be renamed..." );
+}///function ends
+/** Function to search Employee By Name **/
+void searchEmployeeByName()
+{
+    ///clear the screen
+    system ( "cls" );
+    Employee e;
+    char searchName[50];
+    int  isFound = 0;
+    FILE *fptr = openFile();
+    
+    if ( fptr == NULL ) {
+        printf ( "\nSorry, the data file could not be opened..." );
+        exit ( -1 );
+    }
+    
+    printf ( "\nEnter the name of the employee :\t" );
+    fflush ( stdin );
+    gets ( searchName );
+    printf ( "\nName\t\tAge\tSalary" );
+    printf ( "\n***********************************************\n" );
+    
+    while ( fread ( &e, sizeof ( e ), 1, fptr ) == 1 ) {
+        ///to compare the string in case insensitive format
+        if ( strcasecmp ( e.fullName, searchName ) == 0 ) {
+            isFound = 1;
+            printf ( "%s\t%d\t\t%.3f\n", e.fullName, e.age, e.salary );
+            printf ( "_____________________________________________" );
+        }
+    }
+    
+    if ( isFound == 0 )
+        printf ( "\nSorry...the record not found... try checking your spelling..\nPress any key to continue " );
+        
+    fclose ( fptr );
+}///function ends
